@@ -2,64 +2,58 @@ import ctypes
 import discord
 from discord.ext import commands
 from os import system
+import colorama
+from colorama import Fore
 
 def clear_screen():
     # Implementation of clear_screen function
     pass
 
+def fade_pinkred(text):
+    colorama.init()  # Initialize Colorama for cross-platform color support
+    pinkred_text = f"{Fore.MAGENTA}{text}{Fore.RESET}"
+    return pinkred_text
+
 def startup():
     # Implementation of startup function
     pass
 
-async def delete_message(msg):
-    try:
-        await msg.delete()
-        print("Deleted")
-    except discord.errors.NotFound:
-        print("Message not found.")
-    except discord.errors.Forbidden:
-        print("Unable to delete message (Forbidden).")
-    except Exception as e:
-        print(f"An error occurred: {e}")
-
 try:
     clear_screen()
-    ctypes.windll.kernel32.SetConsoleTitleW('channel | bulk delete')
+    ctypes.windll.kernel32.SetConsoleTitleW('glee | bulk delete')
     system('mode con: cols=95 lines=25')
+
+    raw_dashboard_bulk_delete = '''
+╔════════════════════════════════════════════════════════════════════════════════════════╗
+║ ██████╗ ██╗   ██╗██╗     ██╗  ██╗    ██████╗ ███████╗██╗     ███████╗████████╗███████╗ ║    
+║ ██╔══██╗██║   ██║██║     ██║ ██╔╝    ██╔══██╗██╔════╝██║     ██╔════╝╚══██╔══╝██╔════╝ ║   
+║ ██████╔╝██║   ██║██║     █████╔╝     ██║  ██║█████╗  ██║     █████╗     ██║   █████╗   ║   
+║ ██╔══██╗██║   ██║██║     ██╔═██╗     ██║  ██║██╔══╝  ██║     ██╔══╝     ██║   ██╔══╝   ║   
+║ ██████╔╝╚██████╔╝███████╗██║  ██╗    ██████╔╝███████╗███████╗███████╗   ██║   ███████╗ ║   
+║ ╚═════╝  ╚═════╝ ╚══════╝╚═╝  ╚═╝    ╚═════╝ ╚══════╝╚══════╝╚══════╝   ╚═╝   ╚══════╝ ║
+╚════════════════════════════════════════════════════════════════════════════════════════╝'''
+    dashboard_bulk_delete = fade_pinkred(raw_dashboard_bulk_delete)
+    print(dashboard_bulk_delete)
 
     token = "yourtokenhere"
 
-    lithium = commands.Bot(command_prefix='g', self_bot=True, help_command=None)
-
+    lithium = commands.Bot(command_prefix='g', self_bot=True, help_command=None) # Prefix
+    
     @lithium.event
     async def on_ready():
-        try:
-            while True:
-                channel_id = input("Enter the channel ID to delete messages from: ")
+        print("Type glee in the channel you want to delete messages in") # Edit if u change the word that deletes
 
-                try:
-                    channel = lithium.get_channel(int(channel_id))
-                    if channel:
-                        async for msg in channel.history(limit=int(9999999)):
-                            if msg.author.id == lithium.user.id:
-                                await delete_message(msg)
-                    else:
-                        print(f"Channel with ID {channel_id} not found.")
-                except ValueError:
-                    print("Invalid channel ID. Please enter a valid integer.")
-
-        except KeyboardInterrupt:
-            print("\nInterrupted. Press enter to enter another channel ID.")
-            input()  # Wait for the user to press enter
-
-    @lithium.event
-    async def on_message(message):
-        await lithium.process_commands(message)
+    @lithium.command()
+    async def lee(channel): # edit for word to say to delete
+        async for msg in channel.message.channel.history(limit=int(9999999)): # Change how much messages u delete
+            if msg.author.id == lithium.user.id:
+                try:  
+                    await msg.delete()
+                    print("Deleted")
+                except:
+                    continue
 
     lithium.run(token)
 
-    input("Press Enter to exit...")
-
-except Exception as e:
-    print(f"An unexpected error occurred: {e}")
+except KeyboardInterrupt:
     startup()
