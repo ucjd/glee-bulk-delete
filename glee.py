@@ -4,11 +4,9 @@ from discord.ext import commands
 from os import system
 
 def clear_screen():
-    # Implementation of clear_screen function
     pass
 
 def startup():
-    # Implementation of startup function
     pass
 
 async def delete_message(msg):
@@ -50,7 +48,7 @@ try:
 
         except KeyboardInterrupt:
             print("\nInterrupted. Press enter to enter another channel ID.")
-            input()  # Wait for the user to press enter
+            input()
 
     @lithium.event
     async def on_message(message):
