@@ -1,2 +1,2 @@
-pip install discord.py-self colorama
+pip install discord.py-self
 py glee.py
