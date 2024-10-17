@@ -1,8 +1,5 @@
-import ctypes
-import discord
+import asyncio, ctypes, discord, os
 from os import system
-import asyncio
-import os
 
 def clear_screen():
     system('cls' if os.name == 'nt' else 'clear')
