@@ -7,7 +7,7 @@ def clear_screen():
 
 
 def startup():
-    print("Starting up...")
+    pass
 
 
 delete_sequence = [
