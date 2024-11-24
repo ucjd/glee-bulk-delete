@@ -1,4 +1,4 @@
-import asyncio, ctypes, discord, os
+import asyncio, discord, os
 from os import system
 
 
@@ -214,9 +214,7 @@ client = discord.Client()
 @client.event
 async def on_ready():
     clear_screen()
-    ctypes.windll.kernel32.SetConsoleTitleW("channel | bulk delete")
     system("mode con: cols=95 lines=25")
-    print("Hi!")
     while True:
         channel_id = input("Enter the channel ID to delete messages from: ")
         try:
