@@ -6,10 +6,6 @@ def clear_screen():
     system("cls" if os.name == "nt" else "clear")
 
 
-def startup():
-    pass
-
-
 delete_sequence = [
     0.0,
     0.0,
@@ -238,3 +234,4 @@ try:
 except Exception as e:
     print(f"An unexpected error occurred: {e}")
     startup()
+
