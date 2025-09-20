@@ -6,4 +6,5 @@ If you need assistance, feel free to create an "issue" or a similar request on G
 
 Note that the process may take some time, depending on how long it has been since you last sent a message and how active the chat or DM is. This is because it needs to fetch your messages from the chat.
 
-You need the channel open while deleting messages (dms), and because of rate limits it takes a lil bit to delete.
+You need the channel open while deleting messages (dms), and because of rate limits it takes a lil bit to delete (reason i tried my best to add an anti rate limit)
+
